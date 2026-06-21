@@ -1,0 +1,433 @@
+/* Root variables - Your Master Color Palette */
+
+:root {
+  /* System backgorunds */
+
+  --bg-main: #0a0e14;
+
+  --bg-surface: #101520;
+
+  /* Typography Colors */
+
+  --text-primary: #e6edf3;
+
+  --text-muted: #8b949e;
+
+  /* Retro Neon Glow Accents */
+
+  --neon-green: #00ff66;
+
+  --neon-glow: 0 0 8px rgba(0, 255, 102, 0.6);
+
+  /* Pink Accent Properties */
+
+  --neon-pink: #ff007f;
+
+  --neon-pink-glow: 0 0 12px rgba(255, 0, 127, 0.8);
+
+  /* Electric Blue */
+  --neon-blue: #00d2ff;
+  --neon-blue-glow: 0 0 10px rgba(0, 210, 255, 0.7);
+
+  /* Fonts */
+
+  --font-terminal: "Courier New", Courier, monospace;
+}
+
+/* 1. Global Box-Sizing Reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Strip default spacing from the browser */
+
+* {
+  margin: 0;
+
+  padding: 0;
+}
+
+/* 3. Smooth out list defaults */
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* 4. Base body setup */
+
+body {
+  min-height: 100vh;
+
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+
+  /* Theme implimentation */
+
+  background-color: var(--bg-main);
+
+  color: var(--text-primary);
+
+  font-family: var(--font-terminal);
+}
+
+a,
+#get-involved a,
+a[href*="youtube.com"] {
+  color: var(--neon-blue) !important;
+  text-shadow: var(--neon-blue-glow);
+  text-decoration: none;
+}
+
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+/* Header Container layout */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: var(--bg-surface);
+  border-bottom: 2px solid #1a2333;
+}
+
+/* Logo Text Glow */
+.logo a {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  text-shadow: var(--neon-blue-glow);
+}
+
+/* Nav Menu Layout */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+/* The Pink Reactive hover strike */
+.nav-links a:hover {
+  color: var(--neon-pink) !important;
+  text-shadow: var(--neon-pink-glow) !important;
+}
+
+/* Hero section layout */
+#hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: calc(100vh - 84px);
+  gap: 60px;
+  overflow: hidden;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #1a2333;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+a:hover,
+#get-involved a:hover,
+a[href*="youtube.com"]:hover {
+  color: var(--neon-pink) !important;
+  text-shadow: var(--neon-pink-glow) !important;
+}
+
+/* pricing section layout */
+#pricing {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.free-tier,
+.pro-tier {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--bg-surface);
+  border: 1px solid #1a2333;
+  border-radius: 4px;
+  padding: 35px;
+  transition: all 0.3s ease;
+}
+
+/* make pro tier stand out */
+.pro-tier {
+  border-color: rgba(0, 255, 102, 0.3);
+}
+
+.free-tier:hover,
+.pro-tier:hover {
+  border-color: var(--neon-blue);
+  box-shadow: var(--neon-blue-glow);
+}
+
+/* price tag highlight */
+.pro-tier h2 span {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--neon-blue);
+  text-shadow: var(--neon-blue-glow);
+  margin-top: 5px;
+}
+
+#pricing ul {
+  margin-top: 25px;
+}
+
+#pricing li {
+  margin-bottom: 25px;
+}
+
+#pricing h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+#pricing p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* get involed style */
+#get-involved p {
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+#get-involved p:last-of-type {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#get-involved ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+}
+
+.btn-cta {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: var(--bg-surface);
+  color: var(--neon-blue) !important;
+  border: 1px solid #1a2333;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-cta:hover {
+  color: var(--neon-blue) !important;
+  border-color: var(--neon-pink);
+  box-shadow: var(--neon-pink-glow);
+  transform: translateX(5px);
+}
+
+.get-involved-actions {
+  margin-top: 20px;
+}
+
+/* Contact a hacker form styles */
+.hacker-form,
+#contact-a-hacker form {
+  max-width: 400px;
+  background-color: var(--bg-surface);
+  border: 1px solid #1a2333;
+  padding: 40px;
+  border-radius: 4px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group textarea {
+  background-color: var(--bg-main);
+  border: 1px solid #1a2333;
+  border-radius: 4px;
+  padding: 12px;
+  color: var(--text-primary);
+  font-family: var(--font-terminal);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--neon-green);
+  box-shadow: var(--neon-glow);
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+#contact-a-hacker form button {
+  background-color: transparent;
+  color: var(--neon-green);
+  border: 2px solid var(--neon-green);
+  padding: 12px 30px;
+  font-family: var(--font-terminal);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: var(--neon-glow);
+  transition: all 0.3s ease;
+}
+
+#contact-a-hacker form button:hover {
+  background-color: var(--neon-green);
+  border-color: var(--neon-green);
+  color: var(--bg-main);
+  box-shadow: var(--neon-glow);
+}
+
+/* SERVICES STYLE */
+#services h2,
+#pricing h2, 
+#about h2,
+#contact-a-hacker h2,
+#get-involved h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  text-shadow: var(--neon-glow);
+  margin-bottom: 40px;
+  border-bottom: 1px dashed #1a2333;
+  padding-bottom: 10px;
+}
+
+#services ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+#services li {
+  background-color: var(--bg-surface);
+  border: 1px solid #1a2333;
+  border-radius: 4px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+#services li:hover {
+  border-color: var(--neon-blue);
+  box-shadow: var(--neon-blue-glow);
+  transform: translateY(-2px);
+}
+
+#services h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#services p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+
+/* MOBILE RESPONSIVE MEDIA QUERIES (BREAKPOINT: 768px) */
+
+@media (max-width: 768px) {
+  section {
+    padding: 50px 20px;
+  }
+  .main-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+    text-align: center;
+  }
+
+  .nav-links {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-action {
+    display: none;
+  }
+  #hero {
+    flex-direction: column-reverse;
+    gap: 40px;
+    text-align: center;
+    min-height: auto;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .free-tier, .pro-tier {
+    padding: 20px;
+  }
+
+  .hacker-form, #contact-a-hacker form {
+    max-width: 100%;
+    padding: 20px;
+  }
+}
