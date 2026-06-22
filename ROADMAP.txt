@@ -43,3 +43,6 @@ for anyone else trying to use the app. basically Denial of Service
 FIX:
 for mass messaging and automated emails look into an asynchronous background event handler or a  lightweight queue. for my homelab scale i will just ensure my DB writes using non-blocking asynchronous operations (async/wait) so the main 
 thread stays open to accept other incoming traffic
+
+
+## Also i want to change the Get Started button to a login button that will have a signup option as well for new users. and the sign up function will also have option to login for members.
