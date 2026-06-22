@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault(); // Stops browser from reloading the page automatically
 
     // 3. Extract the form data values
-    const codename = document.getElementById('full-name').value;
+    const name = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone-number').value;
     const message = document.getElementById('message').value;
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        fullName: codename,
+        name: name,
         email: email,
         phoneNumber: phone,
         message: message
@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.status === 'SUCCESS') {
+      if (data.status === 'success') {
         // Log secure transaction directly to browser developer console using backticks
-        console.log(`[SIGNAL RECEIVED] From: ${codename} | Channel: ${email} | Node Link Verified.`);
+        console.log(`[SIGNAL RECEIVED] From: ${name} | Channel: ${email} | Node Link Verified.`);
 
         // Replace the inside of the form with a localized terminal readout confirmation
         hackerForm.innerHTML = `
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
               [*] SIGNAL TRANSMITTED SUCCESSFULLY
             </h3>
             <p style="color: var(--text-primary); margin-bottom: 20px; font-size: 0.95rem;">
-              Connection established over secure nodes. Operator <span style="color: var(--neon-blue); font-weight: bold;">${codename}</span>, your encrypted message packet has been verified by server node <span style="color: var(--neon-pink); font-weight: bold;">${data.node}</span>.
+              Connection established over secure nodes. Operator: <span style="color: #FF0033; font-weight: bold;">REDACTED</span>, your encrypted message packet has been verified by server node: <span style="color: #FF0033; font-weight: bold;">REDACTED</span>.
             </p>
             <div style="font-size: 0.8rem; color: var(--text-muted); border-top: 1px dashed #1a2333; padding-top: 15px;">
               TIMESTAMP: ${new Date().toISOString()} <br>

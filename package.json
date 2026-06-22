@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/scriptz0340/hackers-hangout/issues"
   },
-  "homepage": "https://github.com/scriptz0340/hackers-hangout#readme"
+  "homepage": "https://github.com/scriptz0340/hackers-hangout#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
