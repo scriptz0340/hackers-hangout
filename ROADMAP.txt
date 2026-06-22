@@ -37,6 +37,40 @@ hackers-hangout/
 
 
 
+PUBLIC ZONE (Safe for Static)       │     SECURE VAULT (Express Backend)
+                                           │
+  ┌──────────────┐     Form Submit         │      ┌──────────────┐
+  │  login.html  │ ───────────────────────┼────> │  server.js   │ ──> Verifies hash
+  │ (Static HTML)│   (Sent via HTTPS POST) │      └──────────────┘
+  └──────────────┘                         │             │
+                                           │             ▼
+                                           │      ┌──────────────┐
+                                           │      │  database.db │
+                                           │      └──────────────┘
+
+
+
+
+
+hackershangout/                 <-- Project Root
+├── node_modules/
+├── database.js
+├── database.db
+├── package.json
+├── server.js                   <-- Backend Server Code
+└── public/                     <-- Express Static Zone
+    ├── index.html
+    ├── login.html
+    ├── signup.html
+    └── assets/                 <-- Moved Inside Public
+        ├── style.css
+        ├── transmit.js
+        └── images/
+            └── hero.png
+
+
+
+
 
 
 KEEP IN MIND: 
