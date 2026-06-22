@@ -15,6 +15,30 @@ hackers-hangout/
 └── ROADMAP.txt <-- MY DRAFT
 
 
+
+
+                           [ INDEX.HTML ]
+                       (Public Landing Page)
+                           ╱     │      ╲
+                  ┌───────┘      │       └────────┐
+                  ▼              ▼                ▼
+             [ BLOG.HTML ]  [ LOGIN.HTML ]  [ SIGNUP.HTML ]
+            (Public Read)    (Gatekeeper)    (Onboarding)
+                                 │
+                                 ▼
+                         [ DASHBOARD.HTML ]
+                       (Authenticated Network)
+                         ├── Community Feed (Operators + Admins post)
+                         ├── Private Messaging (IRC style)
+                         └── Admin Control Panel (Write to Blog/Moderate)
+
+
+
+
+
+
+
+
 KEEP IN MIND: 
 I am new to web dev and programming and security. im using AI to learn. Im not copy pasting, but using AI as a teacher. I come up with ideas and ask for feedback so if you see thing here or anywhere in my repositories that are wrong just remmebr this is alla learning 
 process for me. feel free to reach out with advice or tips and critiques. im all ears!
