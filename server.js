@@ -28,7 +28,7 @@ app.post("/api/transmit", (req, res) => {
         VALUES (?, ?, ?, ?)
     `;
 
-  db.run(query, [name, email, phone || "NOT PROVIDED", message], (err) => {
+  db.run(query, [name, email, phone, message], (err) => {
     if (err) {
       console.error(
         "[-] DATABASE ERROR: Failed to log submission:",
