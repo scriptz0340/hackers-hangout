@@ -103,4 +103,11 @@ for mass messaging and automated emails look into an asynchronous background eve
 thread stays open to accept other incoming traffic
 
 
-## Also i want to change the Get Started button to a login button that will have a signup option as well for new users. and the sign up function will also have option to login for members.
+## Also i want to change the Get Started button to a login button that will have a signup option as well for new users. and the sign up function will also have option to login for members. (done)
+
+ISSUE:
+Source Code Disclosure via Web Server Misconfig: the project lived inside of /var/www/html/hackershangout. Because this was the default web root my backend code like (server.js, database.js) were exposed directly to public web requests via Source Code Disclosure.
+Fix:
+Entire project was migrated to /home/user/hackershangout and is now completely isolated from the standard web-accessible path. Had to configure Nginx as reverse proxy so that i could allow users to make requests on port 80 and and have nginx catch the traffic and
+route it to port 3000 where node.js is running via a secure loopback. (This app will never be exposed to the internet lol, just homelab experiments). port 3000 hidden from the public. direct access to backend code is restricted and request for assets outside of /public 
+return Cannot GET.
