@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Extract the form data values
     const name = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone-number').value;
+    const phone = document.getElementById('phone').value;
     const message = document.getElementById('message').value;
 
     // 4. Create a temporary visual terminal log on the button
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify({
         name: name,
         email: email,
-        phoneNumber: phone,
+        phone: phone,
         message: message
       })
     })

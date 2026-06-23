@@ -1,5 +1,6 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
+const db = require("./database"); // Imported your SQLite connection node
 const app = express();
 const PORT = 3000;
 
@@ -7,24 +8,53 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Serve all static frontend files from current directory
-app.use(express.static(path.join(__dirname)));
+// SECURITY BOUNDARY: Lock static access exclusively to the public folder
+// This prevents visitors from downloading server.js, database.js, or database.db
+app.use(express.static(path.join(__dirname, "public")));
 
-// Handle the contact form submission endpoint anonymously
-app.post('/api/transmit', (req, res) => {
+// Handle the contact form submission endpoint securely
+app.post("/api/transmit", (req, res) => {
+  // Destructuring fields sent by transmit.js (mapping match to your html input names)
+  const { name, email, phone, message } = req.body;
 
-	const { name, email, message } = req.body
-	
-	// Prints straight to your secure debian server console
-	console.log(`\n[ALERT] Incoming transmission intercepted!`);
-	console.log(`From: ${name} (${email})`);
-	console.log(`Message: ${message}\n`);
+  // Server log alert
+  console.log(
+    `\n[ALERT] Incoming transmission intercepted! Routing to database...`,
+  );
 
-	// Send an anonymous, secure response back to browser
-	res.status(200).json({status: 'success', message: 'Transmission encrypted and routed safely.'});
+  // SQL statement using parameterized inputs (?) to prevent SQL Injection attacks
+  const query = `
+        INSERT INTO submissions (operator_name, operator_email, operator_phone_number, message)
+        VALUES (?, ?, ?, ?)
+    `;
+
+  db.run(query, [name, email, phone || "NOT PROVIDED", message], (err) => {
+    if (err) {
+      console.error(
+        "[-] DATABASE ERROR: Failed to log submission:",
+        err.message,
+      );
+      return res.status(500).json({
+        status: "error",
+        message: "Internal data pipeline failure. Transmission dropped.",
+      });
+    }
+
+    console.log(
+      `[+] SUCCESS: Transmission permanently logged in submissions table.`,
+    );
+
+    // Send a secure response back to the client browser
+    res.status(200).json({
+      status: "success",
+      message: "Transmission encrypted and routed safely into the vault.",
+    });
+  });
 });
 
 // Start the server engine
 app.listen(PORT, () => {
-	console.log(`[SYSTEM] Hacker's Hangout backend online and listening on port ${PORT}`);
+  console.log(
+    `[SYSTEM] Hacker's Hangout backend online and listening on port ${PORT}`,
+  );
 });
