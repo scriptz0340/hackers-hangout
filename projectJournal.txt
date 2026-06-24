@@ -41,10 +41,20 @@ return Cannot GET.
 
 ## 6/23/26:
 GOAL: 
-Create a clean, responsive registration interface that captures user input, prevents automated browser reloads, and trransmits the payload sevurely over nginx proxy server pipeline to the Express backend where it can be written to the DB
+Write signup backend code (/api/auth/signup) DONE!
 
 STEPS TAKEN:
 - install bcrypt on server to handle passwords securely and add it to dependencies inside package.json.
-- Add endpoints to server.js (api/auth/signup) (api/auth/login) and add require bcryptjs at top. (mainly focused on signup today but i figure i may as well add the login endpoint while im at it.) # I also changed the contact form enpoit and script name to 
-contact instead of transmit to be more descriptive.
+- Add endpoints to server.js (api/auth/signup) and add require bcryptjs at top. 
+- changed the contact form endpoit and script name to contact instead of transmit to be more descriptive.
 
+
+## 6/24/26
+GOAL:
+Write login backend code (/api/auth/login)
+
+
+
+## 6/25/26
+GOAL:
+Create a clean, responsive registration interface that captures user input, prevents automated browser reloads, and trransmits the payload securely over nginx proxy server pipeline to the Express backend where it can be written to the DB (signup.html and signup.js)
