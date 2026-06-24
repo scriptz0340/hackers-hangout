@@ -83,31 +83,5 @@ index.html (has links to blog, signup, login) --> signup.html (handles signup an
 I will also creat an admin panel where i can address contack a hacker form submissions, send out system wide notifications, post to our blog, or post in community feed on company's behalf, 
 take actions against user accounts and posts and other moderator actions, send mass messages to users.
 
-Notes: 
-ISSUE:
-static html files cant protect themselves so we cant just have everything be html someone could just type website/dashboard and bypass login
-FIX:
-express needs to act as a gatekeeper using Middleware. when a user request /dashboard node should check thier security token (session or JWT). if they are authed then it /dashboard goes through if not they redirect to login page. 
-
-ISSUE:
-admin and normal users cant share general access routes. account compromise could lead to full database escalation.
-FIX: 
-Role-Based Access Control(RBAC). in SQLite every user needs a 'role' field (role:operator, role: admin)  the admin backend routes must strictly check for role === 'admin'. also shroud the admin path. instead of /admin do something
-like /api/v1/system-override-control or something even more discrete.
-
-ISSUE: 
-automated system messages (Race Conditions). if admin triggers a message to 500 users at once inside a standard HTTP request loop the node server will lock up trying to proceessa ll the database writes at once and performance will drop to zero
-for anyone else trying to use the app. basically Denial of Service
-FIX:
-for mass messaging and automated emails look into an asynchronous background event handler or a  lightweight queue. for my homelab scale i will just ensure my DB writes using non-blocking asynchronous operations (async/wait) so the main 
-thread stays open to accept other incoming traffic
 
 
-## Also i want to change the Get Started button to a login button that will have a signup option as well for new users. and the sign up function will also have option to login for members. (done)
-
-ISSUE:
-Source Code Disclosure via Web Server Misconfig: the project lived inside of /var/www/html/hackershangout. Because this was the default web root my backend code like (server.js, database.js) were exposed directly to public web requests via Source Code Disclosure.
-Fix:
-Entire project was migrated to /home/user/hackershangout and is now completely isolated from the standard web-accessible path. Had to configure Nginx as reverse proxy so that i could allow users to make requests on port 80 and and have nginx catch the traffic and
-route it to port 3000 where node.js is running via a secure loopback. (This app will never be exposed to the internet lol, just homelab experiments). port 3000 hidden from the public. direct access to backend code is restricted and request for assets outside of /public 
-return Cannot GET.
