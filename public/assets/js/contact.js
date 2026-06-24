@@ -1,6 +1,4 @@
-/* ==========================================================================
-   TERMINAL INTERFACE ENGINE - HACKER'S HANGOUT
-   ========================================================================== */
+/* Contact form engine */
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Target the contact a hacker form element
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.style.color = 'var(--neon-pink)';
 
     // 5. Route payload directly to your local Node.js server engine
-    fetch('/api/transmit', {
+    fetch('/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
