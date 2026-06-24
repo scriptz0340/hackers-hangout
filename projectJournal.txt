@@ -50,7 +50,8 @@ STEPS TAKEN:
 - ran into a wierd error when i checked the website before going to bed (502 bad gateway). i ssh to server and run pm2 status and saw that the server had errored and logs told me that sqlite3 was missing somehow. I still dont really understand how it happened
 and gemini wasnt really any help. anyways i just re downloadeed the package and evrything worked so not sure what that was. it could have been because i just added sqlite to package.json and ive been doing git reset --hard on the server and i might have did that
 before i actually added it to the dependencies but not sure. i though it was stopred in node_modules which is in my gitignore file. Ill have to look into it more. gonna push from server then do hard reset from windows and not download anything on windows 
-to avoid possible wierdness when packages are compiled (gemini said something like that could have happened but i dont really understand it)
+to avoid possible wierdness when packages are compiled (gemini said something like that could have happened but i dont really understand it). I added SQLite3 and bcryptjs to packages-lock.json so now they are in both package files along w express hopefully that helps... 
+** Always run npm install on server as a safety net after resetting to ensure dependencies are installed if they get deleted **
 
 
 ## 6/24/26
