@@ -3,11 +3,29 @@ const express = require("express");
 const path = require("path");
 const db = require("./database"); // Imported your SQLite connection node
 const app = express();
+const session = require('express-session');
 const PORT = 3000;
 
 // Middleware to parse incoming form data and json payloads
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Middleware to initialize session management 
+app.use(session({
+  // Crypto string generated with   node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"  command on server
+  secret: "d8c80c03b019d6ccf590e8e04a178edc68b60b7a8f46b980e31226402f54988e8c7acf0f3446180867c79fca1689a97b23611cdfd5115dc55907a1648ec3f91f",
+
+  // compliance and resource optimization
+  resave: false,                         // Prevents resaving sessions that haven't modified any data
+  saveUninitialized: false,              // Don't create a cookie/session until a user actually logs in
+  
+  //Cookie security parameters
+  cookie: {
+    httpOnly: true,                      // CRITICAL: Prevents frontend JavaScript/XSS attacks from reading the cookie
+    secure: false,                       // Set to 'true' ONLY after you configure HTTPS/SSL on your Debian server
+    maxAge: 1000 * 60 * 60 * 24          // Cookie lifespan: 24 hours (in milliseconds)
+  }
+}));
 
 // SECURITY BOUNDARY: Lock static access exclusively to the public folder
 // This prevents visitors from downloading server.js, database.js, or database.db
@@ -128,7 +146,70 @@ app.post("/api/auth/signup", async (req, res) => {
   }
 });
 
+// setup the find user function for sqlite3
+const findUserInDB = (email) => {
+  return new Promise((resolve, reject) => {
+    const query = `SELECT id, username, password_hash FROM users WHERE username = ?`;
+    db.get(query, [email], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row); // returns undefined if no user found, or the user object 
+      }
+    });
+  }); 
+}
+
 // Handle the login form submission endpoint securely (login.html -> login.js -> server.js)
+app.post("/api/auth/login", async (req, res)  => {
+  const { email, password} = req.body;
+
+  console.log(`
+    [ALERT] Incoming transmission intercepted! (login) routing to database...`,
+  )
+
+  // Input validation
+  if (!email || !password) {
+    return res.status(400).json({
+      status: "error",
+      message: "Missing email or password."
+    });
+  }
+  try {
+    // look up user in DB
+    const user = await findUserInDB(email)
+    // generic error message to prevent user enumeration
+    if (!user) {
+      return res.status(401).json({ status: "error", message: "Invalid username or password."});
+    }
+    // compare incoming password with stored hash (bcrypt.compare handles timing attacks safely)
+    const isMatch = await bcrypt.compare(password, user.password_hash);
+
+    if (!isMatch) {
+      return res.status(401).json({ status: "error", message: "invalid username or password."});
+    }
+
+    // authentication successful establish session
+    req.session.userId = user.id;
+    req.session.email = user.username;
+
+    console.log(`[+] SUCESS: Operator '${user.username}' successfully authenticated!`);
+
+    //Send a success response to the browser (dont send the passw hash!)
+    return res.status(200).json({
+      status: "success",
+      message: "Access granted!",
+      user: {
+        id: user.id,
+        email: user.username
+      }
+    });
+  } catch (error) {
+    console.error('[-] Login error:', error);
+    // dont leak specific error details to the client
+    return res.status(500).json({ message: "An internal server error has occured."});
+  }
+});
 
 // Start the server engine
 app.listen(PORT, () => {
