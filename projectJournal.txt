@@ -47,7 +47,7 @@ STEPS TAKEN:
 - install bcrypt on server to handle passwords securely and add it to dependencies inside package.json.
 - Add endpoints to server.js (api/auth/signup) and add require bcryptjs at top. 
 - changed the contact form endpoit and script name to contact instead of transmit to be more descriptive.
-- ran into a wierd error when i checked the website before going to bed (502 bad gateway). i ssh to server and run pm2 status and saw that the server had errored and logs told me that sqlite3 was missing somehow. I still dont really understand how it happened
+- ran into a weird error when i checked the website before going to bed (502 bad gateway). i ssh to server and run pm2 status and saw that the server had errored and logs told me that sqlite3 was missing somehow. I still dont really understand how it happened
 and gemini wasnt really any help. anyways i just re downloadeed the package and evrything worked so not sure what that was. it could have been because i just added sqlite to package.json and ive been doing git reset --hard on the server and i might have did that
 before i actually added it to the dependencies but not sure. i though it was stopred in node_modules which is in my gitignore file. Ill have to look into it more. gonna push from server then do hard reset from windows and not download anything on windows 
 to avoid possible wierdness when packages are compiled (gemini said something like that could have happened but i dont really understand it). I added SQLite3 and bcryptjs to packages-lock.json so now they are in both package files along w express hopefully that helps... 
@@ -57,6 +57,17 @@ to avoid possible wierdness when packages are compiled (gemini said something li
 ## 6/24/26
 GOAL:
 Write login backend code (/api/auth/login)
+
+STEPS TAKEN:
+- add endpoint and login logic to server.js 
+- validate user input to make sure theres something there
+- look up user in DB and if not found return generic error message
+- compare password with stored pass hash with bcrypt.compare()
+- establish session on successful authentication or return generic error message if login fails.
+- install express-session on server for session management 
+- generate key with this commqand on server: node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+- configure express-session middleware inside server.js
+- add express-session to proj dependencies inside package.json and package-lock.json (i guess it was added automatically this time)
 
 
 
