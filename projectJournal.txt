@@ -70,7 +70,11 @@ STEPS TAKEN:
 - add express-session to proj dependencies inside package.json and package-lock.json (i guess it was added automatically this time)
 
 
-
-## 6/25/26
+## 6/28/26
 GOAL:
-Create a clean, responsive registration interface that captures user input, prevents automated browser reloads, and trransmits the payload securely over nginx proxy server pipeline to the Express backend where it can be written to the DB (signup.html and signup.js)
+Create a clean, responsive registration interface that captures user input, prevents automated browser reloads, and transmits the payload securely over nginx proxy server pipeline to the Express backend where it can be written to the DB
+SSTEPS TAKEN:
+- wrote signup.html
+- wrote signup.css 
+- wrote signup.js 
+- updated server.js to make sure payload matches endpoint
