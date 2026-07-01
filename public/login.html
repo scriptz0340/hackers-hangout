@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker's Hangout // Auth Gate</title>
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">
+      <a href="/">BACK TO HOME</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="login">
+      <h2>LOGIN</h2>
+      
+      <div id="message-banner" class="banner-hidden"></div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email">EMAIL:</label>
+          <input type="email" id="email" name="email" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="password">PASSWORD:</label>
+          <input type="password" id="password" name="password" required autocomplete="current-password">
+        </div>
+
+        <button type="submit">LOGIN</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

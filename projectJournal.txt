@@ -78,3 +78,11 @@ SSTEPS TAKEN:
 - wrote signup.css 
 - wrote signup.js 
 - updated server.js to make sure payload matches endpoint
+
+## 6/30/26
+GOAL: 
+Create login page 
+STEPS TAKEN:
+- login.html 
+- login.css
+(make sure ids match between script, html, backend)

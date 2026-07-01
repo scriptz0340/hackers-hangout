@@ -1,0 +1,186 @@
+:root {
+  /* System backgrounds */
+  --bg-main: #0a0e14;
+  --bg-surface: #101520;
+
+  /* Typography Colors */
+  --text-primary: #e6edf3;
+  --text-muted: #8b949e;
+
+  /* Retro Neon Glow Accents */
+  --neon-green: #00ff66;
+  --neon-glow: 0 0 8px rgba(0, 255, 102, 0.6);
+
+  /* Pink Accent Properties */
+  --neon-pink: #ff007f;
+  --neon-pink-glow: 0 0 12px rgba(255, 0, 127, 0.8);
+
+  /* Electric Blue */
+  --neon-blue: #00d2ff;
+  --neon-blue-glow: 0 0 10px rgba(0, 210, 255, 0.7);
+
+  /* Fonts */
+  --font-terminal: "Courier New", Courier, monospace;
+}
+
+/* 1. Global Box-Sizing & Layout Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Base Body Setup & Layout Controller */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-terminal);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. Header & Logo Styling */
+.main-header {
+  padding: 1.5rem 2rem;
+  background-color: rgba(10, 14, 20, 0.8);
+  border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+}
+
+.logo a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+}
+
+.logo a:hover {
+  color: var(--neon-blue);
+  text-shadow: var(--neon-blue-glow);
+}
+
+/* 4. Main Stage Centering Engine */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+/* 5. The Terminal Form Container */
+#login {
+  background-color: var(--bg-surface);
+  border: 2px solid var(--neon-blue);
+  box-shadow: var(--neon-blue-glow);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 4px;
+}
+
+#login h2 {
+  color: var(--neon-blue);
+  text-shadow: var(--neon-blue-glow);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* 6. Form Groups & Entry Prompt Layouts */
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* 7. Terminal Inputs */
+.form-group input {
+  background-color: transparent;
+  border: 1px solid var(--text-muted);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  font-family: var(--font-terminal);
+  font-size: 1rem;
+  outline: none;
+  border-radius: 2px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input Focus States */
+.form-group input:focus {
+  border-color: var(--neon-green);
+  box-shadow: var(--neon-glow);
+}
+
+/* 8. The High-Impact Action Button */
+button[type="submit"] {
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid var(--neon-pink);
+  color: var(--neon-pink);
+  text-shadow: var(--neon-pink-glow);
+  box-shadow: inset 0 0 0 0 var(--neon-pink);
+  padding: 0.85rem;
+  font-family: var(--font-terminal);
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--neon-pink);
+  color: var(--bg-main);
+  box-shadow: var(--neon-pink-glow);
+  text-shadow: none;
+}
+
+/* 9. Feedback Banner Classes */
+#message-banner {
+  font-size: 0.9rem;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: 2px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.banner-hidden {
+  display: none;
+}
+
+.banner-error {
+  border: 1px solid var(--neon-pink);
+  color: var(--neon-pink);
+  background-color: rgba(255, 0, 127, 0.05);
+  box-shadow: var(--neon-pink-glow);
+}
+
+.banner-success {
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  background-color: rgba(0, 255, 102, 0.05);
+  box-shadow: var(--neon-glow);
+}
