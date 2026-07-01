@@ -86,3 +86,4 @@ STEPS TAKEN:
 - login.html 
 - login.css
 (make sure ids match between script, html, backend)
+- fix sql query inside of finduserinDB function to serch for user_id instead of id

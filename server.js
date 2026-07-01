@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Setup the find user function for sqlite3
 const findUserInDB = (email) => {
   return new Promise((resolve, reject) => {
-    const query = `SELECT id, username, password_hash FROM users WHERE username = ?`;
+    const query = `SELECT user_id, username, password_hash FROM users WHERE username = ?`;
     db.get(query, [email], (err, row) => {
       if (err) {
         reject(err);
@@ -172,7 +172,7 @@ app.post("/api/auth/login", async (req, res) => {
     }
 
     // Authentication successful, establish session variables
-    req.session.userId = user.id;
+    req.session.userId = user.user_id;
     req.session.email = user.username;
 
     console.log(`[+] SUCCESS: Operator '${user.username}' successfully authenticated!`);
